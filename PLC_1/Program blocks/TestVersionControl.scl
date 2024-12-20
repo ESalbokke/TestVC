@@ -1,0 +1,26 @@
+﻿FUNCTION_BLOCK "TestVersionControl"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      xStart : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      xDiode : Bool;
+   END_VAR
+
+
+BEGIN
+	"R_TRIG_DB"(CLK := #xStart);
+	
+	
+	IF "R_TRIG_DB".Q AND #xDiode = 0 THEN
+	    #xDiode := 1;
+	ELSIF "R_TRIG_DB".Q AND #xDiode = 1 THEN
+	    #xDiode := 0;
+	    ;
+	END_IF;
+	
+	
+END_FUNCTION_BLOCK
+
